@@ -1,10 +1,10 @@
-# npm-package-hello0
+# npm-package-hello0 (@heiwa4126/hello0)
 
 npm のパッケージを書いて、それを使うテスト。
 
-CommonJS 版。パッケージ名は@heiwa4126/hello0
+まず CommonJS 版。パッケージ名は @heiwa4126/hello0
 
-ここはパッケージ側。使う側は ./example/ 以下
+ここはパッケージ側。使う側は ./example/ 以下参照。
 
 ## このパッケージを作った手順
 
