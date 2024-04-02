@@ -1,9 +1,14 @@
 {
-  "name": "hello1",
+  "name": "@heiwa4126/hello1",
   "version": "1.0.0",
   "description": "test module",
   "type": "commonjs",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "README.md",
+    "lib/**/*"
+  ],
   "scripts": {
     "test": "jest"
   },
