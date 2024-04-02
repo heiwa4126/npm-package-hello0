@@ -1,10 +1,14 @@
-# hello1
+# npm-package-hello0
 
-npm のモジュールを書いて、それを使うテスト。モジュール側。
+npm のパッケージを書いて、それを使うテスト。
 
-## 手順
+CommonJS 版。パッケージ名は@heiwa4126/hello0
 
-1. 作業ディレクトリ作る。`mkdir hello1 && cd hello1`
+ここはパッケージ側。使う側は ./example/ 以下
+
+## このパッケージを作った手順
+
+1. 作業ディレクトリ作る。`mkdir hello0 && cd hello0`
 1. `pnpm init` する (pnpm はお好みで yarn でも npm でも)
 1. lib ディレクトリの下にモジュール書く。JSDoc も書く
 1. `./__tests__` の下にテストコード書く。今回は jest 使った。`pnpm i -D jest`
@@ -16,7 +20,7 @@ npm のモジュールを書いて、それを使うテスト。モジュール�
 
 使う側で `npm i {ここへのパス}`
 
-パスは絶対でも相対でもいいみたい。こっちのほうが使いやすいと思う
+パスは絶対でも相対でもいいみたい。`npm link`に比べてこっちのほうが使いやすいと思う
 
 ## ローカルな使い方 2
 
@@ -24,4 +28,13 @@ npm のモジュールを書いて、それを使うテスト。モジュール�
 
 使う側で `npm link {モジュール名}`
 
-使い勝手に難がある。あと `unlink` は無い。
+使い勝手に難がある。package.json の dependencies に書かれないし。
+
+あと `npm unlink` は無いので
+
+```bash
+cd "$(npm config get prefix)/lib/node_modules"
+```
+
+して該当 symlink を rm すること。
+pnpm は `pnpm uninstall -g` があります。

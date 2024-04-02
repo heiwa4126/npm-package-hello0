@@ -1,5 +1,5 @@
 {
-  "name": "@heiwa4126/hello1",
+  "name": "@heiwa4126/hello0",
   "version": "1.0.0",
   "description": "test module",
   "type": "commonjs",
@@ -12,7 +12,9 @@
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "demo"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
