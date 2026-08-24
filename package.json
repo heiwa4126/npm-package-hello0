@@ -1,23 +1,26 @@
 {
-  "name": "@heiwa4126/hello0",
-  "version": "1.0.0",
-  "description": "test module",
-  "type": "commonjs",
-  "main": "index.js",
-  "files": [
-    "index.js",
-    "README.md",
-    "lib/**/*"
-  ],
-  "scripts": {
-    "test": "jest"
-  },
-  "keywords": [
-    "demo"
-  ],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "jest": "^30.4.2"
-  }
+	"name": "@heiwa4126/hello0",
+	"version": "1.0.0",
+	"description": "test module",
+	"keywords": [
+		"demo"
+	],
+	"license": "ISC",
+	"author": "",
+	"files": [
+		"index.js",
+		"README.md",
+		"lib/**/*"
+	],
+	"type": "commonjs",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest",
+		"format": "oxfmt",
+		"lint": "oxlint",
+		"check": "oxfmt && oxlint --fix"
+	},
+	"devDependencies": {
+		"jest": "^30.4.2"
+	}
 }
