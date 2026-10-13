@@ -1,4 +1,5 @@
-const h1 = require("@heiwa4126/hello0");
+const h1 = require("../src");
+//const h1 = require("@heiwa4126/hello0");
 
 console.log(h1.hello.hello());
 // helloメソッド（hello.js内）

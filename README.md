@@ -11,7 +11,7 @@ npm のパッケージを書いて、それを使うテスト。
 1. 作業ディレクトリ作る。`mkdir hello0 && cd hello0`
 1. `pnpm init`する (pnpm はお好みで yarn でも npm でも)
 1. lib ディレクトリの下にモジュール書く。JSDoc も書く
-1. `./__tests__`の下にテストコードを書く。テストには Node.js 組み込みの`node:test`を使う
+1. `./test`の下にテストコードを書く。テストには Node.js 組み込みの`node:test`を使う
 1. package.json の"main"に設定されている`./index.js`にモジュールの export 追加する
 1. package.json の "scripts" を整える
 1. `pnpm test`ぐらいはしておく
