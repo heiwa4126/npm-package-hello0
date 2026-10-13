@@ -46,3 +46,27 @@ cd "$(npm config get prefix)/lib/node_modules"
 
 して該当 symlink を rm すること。
 pnpm は`pnpm uninstall -g`があります。
+
+## GitHub ダイレクト参照で使う
+
+このモジュールはごくごく単純なので、
+
+```sh
+mkdir x
+cd x
+npm init -y
+npm i --allow-git=root github:heiwa4126/npm-package-hello0
+## `--allow-git=root` は npm v12 以降で必要
+```
+
+で使うことができます。例として以下のような`index.js`で
+
+```js
+# index.js
+const h1 = require("../src");
+console.log(h1.hello.hello());
+const h = new h1.hello2.Hello("test");
+console.log(h.hello());
+```
+
+`node index.js`で実行できます。
