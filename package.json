@@ -15,12 +15,9 @@
 	"type": "commonjs",
 	"main": "index.js",
 	"scripts": {
-		"test": "jest",
+		"test": "node --test",
 		"format": "oxfmt",
 		"lint": "oxlint",
 		"check": "oxfmt && oxlint --fix"
-	},
-	"devDependencies": {
-		"jest": "^30.5.2"
 	}
 }
