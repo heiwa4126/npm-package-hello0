@@ -1,4 +1,4 @@
-const h1 = require("../src");
+const h1 = require("../src"); // node はこれで../src/index.js を読む
 //const h1 = require("@heiwa4126/hello0");
 
 console.log(h1.hello.hello());
