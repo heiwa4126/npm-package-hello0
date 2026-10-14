@@ -70,3 +70,15 @@ console.log(h.hello());
 ```
 
 `node index.js`で実行できます。
+
+## GitHub Releases の tarball から使う
+
+`v1.0.0`のような SemVer タグを push すると、GitHub Actions が
+`package.json`のバージョンと一致することを確認し、GitHub Release に固定名の
+`hello0.tgz`を添付します。
+
+```sh
+pnpm add https://github.com/heiwa4126/npm-package-hello0/releases/download/v1.0.0/hello0.tgz
+```
+
+タグごとの URL を指定するため、インストールするバージョンを固定できます。

@@ -1,0 +1,62 @@
+name: Release npm tarball
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Validate semver tag and package version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          node <<'NODE'
+          const fs = require("node:fs");
+
+          const tag = process.env.RELEASE_TAG;
+          const version = tag.replace(/^v/, "");
+          const semver =
+            /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
+
+          if (!tag.startsWith("v") || !semver.test(version)) {
+            console.error(`Tag "${tag}" is not a v-prefixed SemVer version.`);
+            process.exit(1);
+          }
+
+          const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8"));
+          if (packageJson.version !== version) {
+            console.error(
+              `Tag version "${version}" does not match package.json version "${packageJson.version}".`,
+            );
+            process.exit(1);
+          }
+          NODE
+
+      - name: Pack pnpm package
+        run: |
+          mkdir -p dist
+          pnpm pack --out dist/hello0.tgz
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/hello0.tgz --verify-tag --generate-notes
