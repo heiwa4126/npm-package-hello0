@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing v-prefixed SemVer tag to publish
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -15,6 +21,7 @@ jobs:
       - name: Check out tagged source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
           persist-credentials: false
 
       - name: Set up Node.js
@@ -30,7 +37,7 @@ jobs:
 
       - name: Validate semver tag and package version
         env:
-          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
         run: |
           node <<'NODE'
           const fs = require("node:fs");
@@ -62,4 +69,5 @@ jobs:
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" dist/hello0.tgz --verify-tag --generate-notes
+          RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        run: gh release create "$RELEASE_TAG" dist/hello0.tgz --verify-tag --generate-notes
