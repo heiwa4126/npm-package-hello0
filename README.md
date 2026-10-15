@@ -24,17 +24,19 @@ pnpm ex1
 1. package.json の "scripts" を整える
 1. `pnpm test`ぐらいはしておく
 
-## ローカルな使い方 1
+## 使い方
 
-使う側で`npm i {ここへのパス}`
+### ローカルな使い方 1
+
+使う側で`npm i <ここへのパス>`
 
 パスは絶対でも相対でもいいみたい。`npm link`に比べてこっちのほうが使いやすいと思う
 
-## ローカルな使い方 2
+### ローカルな使い方 2
 
 `pnpm link -g`または`npm link`でグローバルにリンクをはる。
 
-使う側で`npm link {モジュール名}`
+使う側で`npm link <モジュール名>`
 
 使い勝手に難がある。package.json の dependencies に書かれないし。
 
@@ -47,7 +49,7 @@ cd "$(npm config get prefix)/lib/node_modules"
 して該当 symlink を rm すること。
 pnpm は`pnpm uninstall -g`があります。
 
-## GitHub ダイレクト参照で使う
+### GitHub ダイレクト参照で使う
 
 このモジュールはごくごく単純なので、
 
@@ -71,14 +73,23 @@ console.log(h.hello());
 
 `node index.js`で実行できます。
 
-## GitHub Releases の tarball から使う
+### GitHub Releases の tarball から使う
 
-`v1.0.0`のような SemVer タグを push すると、GitHub Actions が
-`package.json`のバージョンと一致することを確認し、GitHub Release に固定名の
+`v1.0.0`のような SemVer タグを push すると、GitHub Release に固定名の
 `hello0.tgz`を添付します。
 
+ふつうは`hello0-1.0.2.tgz`みたいになるのですが、リネームしてあります。
+
+バージョンを指定してインストールする場合:
+
 ```sh
-pnpm add https://github.com/heiwa4126/npm-package-hello0/releases/download/v1.0.0/hello0.tgz
+npm i https://github.com/heiwa4126/npm-package-hello0/releases/download/v1.0.2/hello0.tgz
 ```
 
-タグごとの URL を指定するため、インストールするバージョンを固定できます。
+最新の Release をインストールする場合:
+
+```sh
+npm i https://github.com/heiwa4126/npm-package-hello0/releases/latest/download/hello0.tgz
+```
+
+`latest` の URL は同じまま内容が更新されるため、再現性を重視する場合はバージョン指定を使ってください。
