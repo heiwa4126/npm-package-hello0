@@ -64,8 +64,8 @@ npm i --allow-git=root github:heiwa4126/npm-package-hello0
 で使うことができます。例として以下のような`index.js`で
 
 ```js
-# index.js
-const h1 = require("../src");
+// index.js
+const h1 = require("@heiwa4126/hello0");
 console.log(h1.hello.hello());
 const h = new h1.hello2.Hello("test");
 console.log(h.hello());
