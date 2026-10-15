@@ -61,17 +61,17 @@ npm i --allow-git=root github:heiwa4126/npm-package-hello0
 ## `--allow-git=root` は npm v12 以降で必要
 ```
 
-で使うことができます。例として以下のような`index.js`で
+で使うことができます。例として以下のような`index.cjs`で
 
 ```js
-// index.js
+// index.cjs
 const h1 = require("@heiwa4126/hello0");
 console.log(h1.hello.hello());
 const h = new h1.hello2.Hello("test");
 console.log(h.hello());
 ```
 
-`node index.js`で実行できます。
+`node index.cjs`で実行できます。
 
 ### GitHub Releases の tarball から使う
 
